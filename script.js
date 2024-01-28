@@ -10,4 +10,13 @@ function playSound(e){
     key.classList.add('playing');
 }
 
+function removeTransition(e){
+    if(e.type !== 'transitionend'){
+        return ; // if the event type isn't transitionend then skip it
+    }
+    this.classList.remove('playing');
+}
+
+const keys = document.querySelectorAll('.key');
+keys.forEach(key => key.addEventListener('transitionend', removeTransition));
 window.addEventListener('keydown', playSound);
